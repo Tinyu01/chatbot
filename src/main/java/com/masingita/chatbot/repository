@@ -1,8 +1,0 @@
-package com.masingita.chatbot.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.masingita.chatbot.model.YourEntity; // Replace YourEntity with your actual entity class
-
-public interface YourEntityRepository extends JpaRepository<YourEntity, Long> {
-    // Define custom query methods if needed
-}
