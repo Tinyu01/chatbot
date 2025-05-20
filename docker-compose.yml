@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  chatbot:
+    build:
+      context: ./src/main
+      dockerfile: ../../Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src/main/resources/static:/app/src/main/resources/static
+      - ./src/main/resources/templates:/app/src/main/resources/templates
+      - ./src/main/resources/application.yml:/app/src/main/resources/application.yml
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  chatbot-data: {}
